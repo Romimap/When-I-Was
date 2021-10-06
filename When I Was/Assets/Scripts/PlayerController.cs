@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PhysicsObject
-{
+public class PlayerController : PhysicsObject {
 
     public float jumpInitSpeed = 7;
     public float maxSpeed = 7;
 
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
 
     // Start is called before the first frame update
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
     }
 
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
 
-        //déplacement horizontal
+        //dï¿½placement horizontal
         move.x = Input.GetAxis("Horizontal");
 
         if(Input.GetButtonDown("Jump") && grounded)   //saut possible que si au sol (rajouter condition si on veut wall jump)
@@ -40,8 +37,6 @@ public class PlayerController : PhysicsObject
 
         if (flipSprite)
             spriteRenderer.flipX = !spriteRenderer.flipX;
-
-        animator.SetFloat("moveSpeed", Mathf.Abs (velocity.x) / maxSpeed);
 
 
         targetVelocity = move * maxSpeed;
