@@ -6,6 +6,7 @@ public class PlayerController : PhysicsObject {
 
     public float jumpInitSpeed = 7;
     public float maxSpeed = 7;
+    public GameObject spawnPoint;
 
     private SpriteRenderer spriteRenderer;
 
@@ -40,5 +41,21 @@ public class PlayerController : PhysicsObject {
 
 
         targetVelocity = move * maxSpeed;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Danger"))
+        {
+            Death();
+        }
+    }
+
+
+    protected void Death()
+    {
+        
+        this.transform.position = spawnPoint.transform.position;
+
     }
 }
