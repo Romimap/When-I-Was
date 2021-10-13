@@ -1146,6 +1146,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1436246236172388, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1487645863801152, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1154,16 +1158,65 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605886969202752, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719675144317442, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076378694464424, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_text
+      value: "CREATED BY\n\nCharles Sayamath\nCl\xE9ment Potin\nEmery Bourget-Vecchio\nGuillaume
+        Lanson\nRomain Fournier"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076378694464424, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_paragraphSpacing
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076378694464424, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076378694464424, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076378694464424, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 114417321767088670, guid: 58601189f96c7004a8d574ae06560c82,
         type: 3}
       propertyPath: newSceneName
       value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114995009934801108, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_text
+      value: When I Was
       objectReference: {fileID: 0}
     - target: {fileID: 223755256868501534, guid: 58601189f96c7004a8d574ae06560c82,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1019467815}
+    - target: {fileID: 224525709761320360, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 224560054257401536, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.9975586
+      objectReference: {fileID: 0}
     - target: {fileID: 224835217805265970, guid: 58601189f96c7004a8d574ae06560c82,
         type: 3}
       propertyPath: m_Pivot.x
