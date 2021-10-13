@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: FX
+    uniqueID: 3359762451
+    locked: 0
+  - name: Foreground
+    uniqueID: 2212208799
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1268953253
+    locked: 0
+  - name: Void
+    uniqueID: 525728215
     locked: 0
