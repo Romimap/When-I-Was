@@ -392,18 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296007ee8e8c83b46af6e81654b53065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &946920642 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114080112278212498, guid: 58601189f96c7004a8d574ae06560c82,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750910144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &999861231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -797,7 +785,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 946920642}
+      objectReference: {fileID: 0}
     - target: {fileID: 114285124378158966, guid: fde6b1169b14c6945b44a7065488458d,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -822,7 +810,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 946920642}
+      objectReference: {fileID: 0}
     - target: {fileID: 114411358407540540, guid: fde6b1169b14c6945b44a7065488458d,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -852,7 +840,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 946920642}
+      objectReference: {fileID: 0}
     - target: {fileID: 114823818211367906, guid: fde6b1169b14c6945b44a7065488458d,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -892,7 +880,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 946920642}
+      objectReference: {fileID: 0}
     - target: {fileID: 223988361274798664, guid: fde6b1169b14c6945b44a7065488458d,
         type: 3}
       propertyPath: m_Camera
@@ -1146,9 +1134,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1436246236172388, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+    - target: {fileID: 1302142707991086, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362179720800220, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436246236172388, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487645863801152, guid: 58601189f96c7004a8d574ae06560c82, type: 3}
       propertyPath: m_IsActive
@@ -1196,6 +1192,21 @@ PrefabInstance:
         type: 3}
       propertyPath: newSceneName
       value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610029867467138, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610029867467138, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610029867467138, guid: 58601189f96c7004a8d574ae06560c82,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114995009934801108, guid: 58601189f96c7004a8d574ae06560c82,
         type: 3}
