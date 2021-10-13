@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerController : PhysicsObject {
 
     public float jumpInitSpeed = 7;
@@ -9,6 +11,7 @@ public class PlayerController : PhysicsObject {
     public GameObject spawnPoint;
 
     private SpriteRenderer spriteRenderer;
+    private STATE playerState = STATE.Grounded;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,7 +23,7 @@ public class PlayerController : PhysicsObject {
     {
         Vector2 move = Vector2.zero;
 
-        //d�placement horizontal
+        //deplacement horizontal
         move.x = Input.GetAxis("Horizontal");
 
         if(Input.GetButtonDown("Jump") && grounded)   //saut possible que si au sol (rajouter condition si on veut wall jump)
