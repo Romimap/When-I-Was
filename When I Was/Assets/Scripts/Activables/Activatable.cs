@@ -6,7 +6,7 @@ public class Activatable : MonoBehaviour {
     public Activatable FutureActivatable = null;
     public Activatable PastActivatable = null;
 
-    private bool _activated = false;
+    protected bool _activated = false;
 
     public virtual void Activate () {
         _activated = true;
