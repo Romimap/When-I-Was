@@ -8,7 +8,9 @@ public class CameraScript : MonoBehaviour
     public Transform followTransform;
     public BoxCollider2D mapBounds;
 
-
+    public Transform player;
+    public float FollowSpeed = 2f;// Smooth Follow 
+    public Vector3 offset;
     private float xMin, xMax, yMin, yMax;
     private float camY, camX;
     private float camOrthsize;
@@ -34,13 +36,16 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         
+        Vector3 newPosition = player.transform.position;
+        newPosition.z = -10;
+        transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        camY = Mathf.Clamp(followTransform.position.y, yMin + camOrthsize, yMax - camOrthsize);
-        camX = Mathf.Clamp(followTransform.position.x, xMin + cameraRatio, xMax - cameraRatio);
-        smoothPos = Vector3.Lerp(this.transform.position, new Vector3(camX, camY, this.transform.position.z), smoothSpeed);
-        this.transform.position = smoothPos;
+        // camY = Mathf.Clamp(followTransform.position.y, yMin + camOrthsize, yMax - camOrthsize);
+        // camX = Mathf.Clamp(followTransform.position.x, xMin + cameraRatio, xMax - cameraRatio);
+        // smoothPos = Vector3.Lerp(this.transform.position, new Vector3(camX, camY, this.transform.position.z), smoothSpeed);
+        // this.transform.position = smoothPos;
     }
 }
