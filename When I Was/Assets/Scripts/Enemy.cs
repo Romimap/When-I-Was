@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ennemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private float delay = 0;
     private Vector3 offset = new Vector3(1, 0, 0);
