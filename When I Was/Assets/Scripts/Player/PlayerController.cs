@@ -9,12 +9,7 @@ public class PlayerController : MonoBehaviour {
     private float _height;
     private float _heightOffset;
     private float _lastOnGroundAt = 0;
-    private bool OnGround {
-        get {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1),  _height + 0.1f);
-            return _momentum.y <= 0 && (hit2D.collider != null || _lastOnGroundAt > Time.time - coyoteTime);
-            }
-        }
+    
 
     public GameObject groundLevel;
 
@@ -29,6 +24,12 @@ public class PlayerController : MonoBehaviour {
     public KeyCode jump;
 
     Rigidbody2D _rb;
+
+    private bool OnGround {
+        get {
+            return _momentum.y <= 0 && _lastOnGroundAt > Time.time - coyoteTime;
+        }
+    }
 
     void Start()
     {
