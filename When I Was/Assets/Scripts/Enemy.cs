@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Danger"))
+        if (!collision.CompareTag("Danger") && !collision.CompareTag("Player"))
             this.gameObject.transform.Rotate(new Vector3(0, 180, 0));
     }
 }
