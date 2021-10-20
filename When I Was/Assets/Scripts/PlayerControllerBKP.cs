@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : PhysicsObject {
+public class PlayerControllerBKP : PhysicsObject {
 
     public float jumpInitSpeed = 7;
     public float maxSpeed = 7;
