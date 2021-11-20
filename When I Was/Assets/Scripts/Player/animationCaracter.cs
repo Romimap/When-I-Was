@@ -20,7 +20,7 @@ public class animationCaracter : MonoBehaviour
             m_Animator.SetBool("move",false);
         }
         
-        if (_momentum.y < -0.5f ||_momentum.y > 0.5f )
+        if (_momentum.y < -0.9f ||_momentum.y > 0.9f )
         {
             m_Animator.SetBool("jump",true);
         }
