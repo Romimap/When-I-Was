@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class CameraScript : MonoBehaviour
 {
@@ -36,9 +38,11 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         
-        Vector3 newPosition = player.transform.position;
+        
+        Vector3 newPosition = player.transform.position + offset;
+        newPosition.x += player.GetComponent<PlayerController>()._momentum.x ;
         newPosition.z = -10;
-        transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()
