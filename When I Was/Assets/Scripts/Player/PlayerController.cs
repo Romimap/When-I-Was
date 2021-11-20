@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public float coyoteTime = 0.1f;
     public float jumpForce = 100;
-    public Vector2 wallJumpForce = new Vector2(50, 70);
+    public Vector2 wallJumpForce = new Vector2(170, 100);
     public float gravity = 10;
     public float acceleration = 0.1f;
     public float airAcceleration = 0.05f;
