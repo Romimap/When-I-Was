@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
     protected ContactFilter2D contactFilterPast;
     protected ContactFilter2D contactFilterPresent;
 
+    public Material SceneRenderMaterial;
+
     private enum State {
         Past, Present
     };
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour {
         currentWorldLayer = presentLayer;
 
         initializeGO();
+
+        StartCoroutine("RenderBlendCoroutine");
     }
 
     void Update() {
@@ -156,7 +160,21 @@ public class PlayerController : MonoBehaviour {
                 Debug.LogError("Collision !");
             }
         }
+    }
 
+    IEnumerator RenderBlendCoroutine () {
+        float timer = 0;
+        while (true) {
+            if (gabbyState == State.Present) {
+                timer -= Time.deltaTime * 2;
+            } else {
+                timer += Time.deltaTime * 2;
+            }
+            timer = Mathf.Clamp01(timer);
+            SceneRenderMaterial.SetFloat("_Blend", timer);
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void initializeGO () {
@@ -164,20 +182,20 @@ public class PlayerController : MonoBehaviour {
         hideBranch(pastParent);
     }
 
-    void SetVisibility (GameObject o, bool visible) {
-        Renderer r = o.GetComponent<Renderer>();
-        if (r != null) r.enabled = visible;
-        for (int i = 0; i < o.transform.childCount; i++) { //TODO
-            SetVisibility(o.transform.GetChild(i).gameObject, visible);
-        }
-    }
+    //void SetVisibility (GameObject o, bool visible) {
+    //    Renderer r = o.GetComponent<Renderer>();
+    //    if (r != null) r.enabled = visible;
+    //    for (int i = 0; i < o.transform.childCount; i++) { //TODO
+    //        SetVisibility(o.transform.GetChild(i).gameObject, visible);
+    //    }
+    //}
 
     void showBranch (GameObject parent) {
         GameObject toHide = parent.transform.Find("ToHide").gameObject;
         GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
 
         toDisable.SetActive(true);
-        SetVisibility(toHide, true);
+        //SetVisibility(toHide, true);
     }
 
     void hideBranch (GameObject parent) {
@@ -185,6 +203,6 @@ public class PlayerController : MonoBehaviour {
         GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
 
         toDisable.SetActive(false);
-        SetVisibility(toHide, false);
+        //SetVisibility(toHide, false);
     }
 }
