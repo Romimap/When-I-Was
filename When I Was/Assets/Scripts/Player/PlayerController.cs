@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private float _heightOffset;
     private float _lastOnGroundAt = 0;
 
-
     public GameObject groundLevel;
 
     public float coyoteTime = 0.1f;
@@ -41,6 +40,8 @@ public class PlayerController : MonoBehaviour
     protected ContactFilter2D contactFilterPresent;
 
     public Material SceneRenderMaterial;
+    private Rigidbody2D Grabbed = null;
+    private Vector3 grabbedOffset;
 
     bool useDoubleJump = false;
     bool doubleJump = false;
@@ -81,16 +82,21 @@ public class PlayerController : MonoBehaviour
         StartCoroutine("RenderBlendCoroutine");
     }
 
-    void Update()
-    {
+    void Update() {
         //Inputs
         float x = 0;
         if (Input.GetKey(left)) x -= 1;
         if (Input.GetKey(right)) x += 1;
         bool jump = Input.GetKeyDown(KeyCode.Space);
 
+        if (Grabbed != null) {
+            jump = false;
+            Grabbed.velocity = (transform.position + grabbedOffset - Grabbed.transform.position) * 10;
+        }
+
         //Movement
         _momentum = _rb.velocity;
+
         RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, new Vector2(1, 0),
             7.0f, (int) Mathf.Pow(2, currentWorldLayer));
         RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, new Vector2(-1, 0),
@@ -98,10 +104,14 @@ public class PlayerController : MonoBehaviour
         // Debug.DrawRay(transform.position, new Vector2(10.0f, 0),
         //     Color.blue, 0.1f);
 
+        //Slower if you grabbed something
+        if (Grabbed != null) {
+            _targetMomentum.x = x * speed / 2;
+        } else {
+            _targetMomentum.x = x * speed;
+        }
 
-        _targetMomentum.x = x * speed;
-        if (OnGround)
-        {
+        if (OnGround) {
             if (jump)
             {
                 _momentum.y = jumpForce;
@@ -151,42 +161,38 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Set Velocity
         _rb.velocity = _momentum;
 
         //Snap to ground
-        if (_momentum.y <= 0)
-        {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1),
-                _height + _heightOffset, (int) Mathf.Pow(2, currentWorldLayer));
-            if (hit2D.collider != null)
-            {
+        if (_momentum.y <= 0) {
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1), _height + _heightOffset, (int) Mathf.Pow(2, currentWorldLayer));
+            if (hit2D.collider != null) {
                 Vector2 pos = new Vector2(transform.position.x, transform.position.y);
                 float diff = _height - (pos - hit2D.point).magnitude;
                 transform.position += Vector3.up * diff;
                 _lastOnGroundAt = Time.time;
                 _heightOffset = 5;
-            }
-            else
-            {
+            } else {
                 _heightOffset = 0;
             }
         }
 
-
         //Animation
-        if (_momentum.x > 1 && _sr.flipX)
-        {
+        if (_momentum.x > 1 && _sr.flipX) {
             _sr.flipX = false;
         }
 
-        if (_momentum.x < -1 && !_sr.flipX)
-        {
+        if (_momentum.x < -1 && !_sr.flipX) {
             _sr.flipX = true;
         }
 
         //Swap timeline
-        if (Input.GetKeyDown(KeyCode.T))
-        {
+        if (Input.GetKeyDown(KeyCode.LeftShift)){
+            Grabbed = null;
+
+            Debug.Log("SWAP");
+
             List<Collider2D> collisionsPast = new List<Collider2D>();
             List<Collider2D> collisionsPresent = new List<Collider2D>();
 
@@ -222,6 +228,30 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.LogError("Collision !");
+            }
+        }
+
+        //Grab objects
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            Vector2 direction = new Vector2(1, 0);
+            if (_sr.flipX) {
+                direction = -direction;
+            }
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, 10, (int)Mathf.Pow(2, currentWorldLayer));
+            if (hit2D.collider != null) {
+                Rigidbody2D hit = hit2D.collider.gameObject.GetComponent<Rigidbody2D>();
+                Grabbed = hit;
+                if (Grabbed != null) {
+                    grabbedOffset = Grabbed.transform.position - transform.position + new Vector3(direction.x, direction.y, 0) * 2;
+                }
+            }
+        } if (Input.GetKeyUp(KeyCode.LeftControl) && Grabbed != null) {
+            Debug.Log("Released " + Grabbed.name);
+            Grabbed = null;
+            GameObject toDelete = transform.Find("GrabbedCollider").gameObject;
+            if (toDelete != null) {
+                toDelete.transform.parent = null;
+                Destroy(toDelete);
             }
         }
 
