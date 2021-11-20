@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D Grabbed = null;
     private Vector3 grabbedOffset;
 
+    
+    
     bool useDoubleJump = false;
     bool doubleJump = false;
     bool useWallJump = false;
@@ -171,6 +173,7 @@ public class PlayerController : MonoBehaviour
                 Vector2 pos = new Vector2(transform.position.x, transform.position.y);
                 float diff = _height - (pos - hit2D.point).magnitude;
                 transform.position += Vector3.up * diff;
+               
                 _lastOnGroundAt = Time.time;
                 _heightOffset = 5;
             } else {
@@ -248,11 +251,6 @@ public class PlayerController : MonoBehaviour
         } if (Input.GetKeyUp(KeyCode.LeftControl) && Grabbed != null) {
             Debug.Log("Released " + Grabbed.name);
             Grabbed = null;
-            GameObject toDelete = transform.Find("GrabbedCollider").gameObject;
-            if (toDelete != null) {
-                toDelete.transform.parent = null;
-                Destroy(toDelete);
-            }
         }
 
     }
