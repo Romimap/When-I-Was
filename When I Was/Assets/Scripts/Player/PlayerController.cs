@@ -23,6 +23,31 @@ public class PlayerController : MonoBehaviour {
     public KeyCode right;
     public KeyCode jump;
 
+    public GameObject past;
+    public GameObject present;
+    public GameObject persistent;
+
+    protected int pastLayer = 8;
+    protected int presentLayer = 9;
+    protected int persistentLayer = 10;
+    protected int playerPastLayer = 12;
+    protected int playerPresentLayer = 13;
+
+    protected int currentWorldLayer;
+
+    protected ContactFilter2D contactFilterPast;
+    protected ContactFilter2D contactFilterPresent;
+
+    private enum State {
+        Past, Present
+    };
+    private State gabbyState = State.Present;
+
+    public float circleRadius = 6f;
+
+    public GameObject pastParent;   //objects to hide when we switch to present
+    public GameObject presentParent; // same but vice-versa
+
     Rigidbody2D _rb;
 
     private bool OnGround {
@@ -37,6 +62,14 @@ public class PlayerController : MonoBehaviour {
         _sr = GetComponentInChildren<SpriteRenderer>();
         _height = (transform.position - groundLevel.transform.position).magnitude;
         _heightOffset = 0f;
+
+        contactFilterPast.SetLayerMask((int)Mathf.Pow(2, pastLayer));
+        contactFilterPresent.SetLayerMask((int)Mathf.Pow(2, presentLayer));
+        contactFilterPast.useLayerMask = true;
+        contactFilterPresent.useLayerMask = true;
+        currentWorldLayer = presentLayer;
+
+        initializeGO();
     }
 
     void Update() {
@@ -45,7 +78,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(left)) x-=1;
         if (Input.GetKey(right)) x+=1;
         bool jump = Input.GetKeyDown(KeyCode.Space);
-
 
         //Movement
         _momentum = _rb.velocity;
@@ -68,11 +100,10 @@ public class PlayerController : MonoBehaviour {
         
         //Snap to ground
         if (_momentum.y <= 0) {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1),  _height + _heightOffset, 1);
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1),  _height + _heightOffset, (int)Mathf.Pow(2, currentWorldLayer));
             if (hit2D.collider != null) {
                 Vector2 pos = new Vector2(transform.position.x, transform.position.y);
                 float diff = _height - (pos - hit2D.point).magnitude;
-                print(diff);
                 transform.position += Vector3.up * diff;
                 _lastOnGroundAt = Time.time;
                 _heightOffset = 5;
@@ -89,5 +120,71 @@ public class PlayerController : MonoBehaviour {
             _sr.flipX = true;
         }
 
+        //Swap timeline
+        if (Input.GetKeyDown(KeyCode.T)) {
+            List<Collider2D> collisionsPast = new List<Collider2D>();
+            List<Collider2D> collisionsPresent = new List<Collider2D>();
+
+            Physics2D.OverlapCircle(transform.position, circleRadius, contactFilterPast, collisionsPast);
+            Physics2D.OverlapCircle(transform.position, circleRadius, contactFilterPresent, collisionsPresent);
+
+            foreach (Collider2D co in collisionsPast)
+                Debug.Log(co.gameObject.name);
+
+            foreach (Collider2D co in collisionsPresent)
+                Debug.Log(co.gameObject.name);
+
+            if (gabbyState == State.Present && collisionsPast.Count == 0) {
+                gabbyState = State.Past;
+
+                gameObject.layer = playerPastLayer;
+                currentWorldLayer = pastLayer;
+
+                showBranch(pastParent);
+                hideBranch(presentParent);
+
+            } else if (gabbyState == State.Past && collisionsPresent.Count == 0) {
+                gabbyState = State.Present;
+
+                gameObject.layer = playerPresentLayer;
+                currentWorldLayer = presentLayer;
+
+                showBranch(presentParent);
+                hideBranch(pastParent);
+
+            } else {
+                Debug.LogError("Collision !");
+            }
+        }
+
+    }
+
+    void initializeGO () {
+        showBranch(presentParent);
+        hideBranch(pastParent);
+    }
+
+    void SetVisibility (GameObject o, bool visible) {
+        Renderer r = o.GetComponent<Renderer>();
+        if (r != null) r.enabled = visible;
+        for (int i = 0; i < o.transform.childCount; i++) { //TODO
+            SetVisibility(o.transform.GetChild(i).gameObject, visible);
+        }
+    }
+
+    void showBranch (GameObject parent) {
+        GameObject toHide = parent.transform.Find("ToHide").gameObject;
+        GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
+
+        toDisable.SetActive(true);
+        SetVisibility(toHide, true);
+    }
+
+    void hideBranch (GameObject parent) {
+        GameObject toHide = parent.transform.Find("ToHide").gameObject;
+        GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
+
+        toDisable.SetActive(false);
+        SetVisibility(toHide, false);
     }
 }
