@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Activatable : MonoBehaviour {
-    public Activatable FutureActivatable = null;
-    public Activatable PastActivatable = null;
+    public Activatable FutureEntity = null;
+    public Activatable PastEntity = null;
 
-    private bool _activated = false;
+    protected bool _activated = false;
 
     public virtual void Activate () {
         _activated = true;
-        if (FutureActivatable != null) {
-            FutureActivatable.Activate();
+        if (FutureEntity != null) {
+            FutureEntity.Activate();
         }
     }
 
     public virtual void Deactivate () {
         _activated = false;
-        if (FutureActivatable != null) {
-            FutureActivatable.Deactivate();
+        if (FutureEntity != null) {
+            FutureEntity.Deactivate();
         }
     }
 
