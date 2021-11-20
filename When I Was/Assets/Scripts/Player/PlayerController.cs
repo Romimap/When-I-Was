@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
 
     public Material SceneRenderMaterial;
 
+    bool useDoubleJump = false;
+    bool doubleJump = false;
+    bool useWallJump = false;
+
     private enum State {
         Past, Present
     };

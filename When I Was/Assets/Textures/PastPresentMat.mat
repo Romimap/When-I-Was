@@ -101,7 +101,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_Offset: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_OffsetA: {r: 1, g: 0.8066038, b: 0.8066038, a: 1}
+    - _Color_OffsetA: {r: 0.80784315, g: 1, b: 0.99171203, a: 1}
     - _Color_OffsetB: {r: 0, g: 0.94911766, b: 1, a: 1}
     - _Color_Power: {r: 1, g: 1, b: 1, a: 1}
     - _Color_PowerA: {r: 1, g: 1, b: 1, a: 1}
