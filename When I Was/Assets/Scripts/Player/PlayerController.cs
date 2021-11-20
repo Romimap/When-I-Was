@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public float coyoteTime = 0.1f;
     public float jumpForce = 100;
+    public Vector2 wallJumpForce = new Vector2(50, 70);
     public float gravity = 10;
     public float acceleration = 0.1f;
     public float airAcceleration = 0.05f;
@@ -126,16 +127,16 @@ public class PlayerController : MonoBehaviour
         {
             if (jump && !useWallJump)
             {
-                _momentum.x = -jumpForce * 2;
-                _momentum.y = jumpForce;
+                _momentum.x = -wallJumpForce.x;
+                _momentum.y = wallJumpForce.y;
                 _heightOffset = 0f;
                 useWallJump = true;
             }
         }
         else if (hit2DWallLeft.collider != null && !useWallJump && jump)
         {
-            _momentum.x = jumpForce * 2;
-            _momentum.y = jumpForce;
+            _momentum.x = wallJumpForce.x;
+            _momentum.y = wallJumpForce.y;
             _heightOffset = 0f;
             useWallJump = true;
         }
@@ -145,7 +146,9 @@ public class PlayerController : MonoBehaviour
             useWallJump = false;
             if (!useDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
             _momentum.y -= gravity * Time.deltaTime;
-            _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
+            if (Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) {
+                _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
+            }
         }
 
         _rb.velocity = _momentum;

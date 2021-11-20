@@ -664,11 +664,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4090273487401609461, guid: a59f95e87d164a73a97f72d5a164d5fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8792419936807008594, guid: a59f95e87d164a73a97f72d5a164d5fc,
         type: 3}
       propertyPath: m_SortingOrder
@@ -3339,11 +3334,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 7987259047979713898, guid: 356932a38a011bddb91d5983beed9797,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 356932a38a011bddb91d5983beed9797, type: 3}
 --- !u!1 &566385747 stripped
@@ -5233,7 +5223,7 @@ MonoBehaviour:
   jumpForce: 100
   gravity: 200
   acceleration: 0.05
-  airAcceleration: 0.005
+  airAcceleration: 0.01
   speed: 50
   left: 113
   right: 100
