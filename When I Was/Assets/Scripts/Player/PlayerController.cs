@@ -275,22 +275,4 @@ public class PlayerController : MonoBehaviour
             SetVisibility(o.transform.GetChild(i).gameObject, visible);
         }
     }
-
-    void showBranch(GameObject parent)
-    {
-        GameObject toHide = parent.transform.Find("ToHide").gameObject;
-        GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
-
-        toDisable.SetActive(true);
-        SetVisibility(toHide, true);
-    }
-
-    void hideBranch(GameObject parent)
-    {
-        GameObject toHide = parent.transform.Find("ToHide").gameObject;
-        GameObject toDisable = parent.transform.Find("ToDisable").gameObject;
-
-        toDisable.SetActive(false);
-        SetVisibility(toHide, false);
-    }
 }
