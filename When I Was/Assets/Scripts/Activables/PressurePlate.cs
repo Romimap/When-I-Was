@@ -22,14 +22,12 @@ public class PressurePlate : Activatable {
     }
 
     private void OnTriggerEnter2D (Collider2D c) {
-        print(c.name + " enter");
         if (c.tag.Equals("Player") || c.tag.Equals("Box")) {
             Activate();
         }
     }
 
     private void OnTriggerExit2D (Collider2D c) {
-        print(c.name + " exit");
         if (c.tag.Equals("Player") || c.tag.Equals("Box")) {
             Deactivate();
         }

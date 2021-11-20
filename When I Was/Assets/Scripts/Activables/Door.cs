@@ -25,17 +25,14 @@ public class Door : Activatable {
     public override void Deactivate() {
         if (_preventClosing) {
             _wantsToClose = true;
-            print("_wantsToClose " + _wantsToClose);
             return;
         }
         GetComponent<Animator>().SetBool("Opened", false);
         base.Deactivate();
         _wantsToClose = false;
-        print("_wantsToClose " + _wantsToClose);
     }
 
     private void OnTriggerEnter2D (Collider2D c) {
-        print(c.name + " enter");
         if (c.tag.Equals("Player")) {
             _preventClosing = true;
             _wantsToClose = !_activated;
@@ -44,7 +41,6 @@ public class Door : Activatable {
     }
 
     private void OnTriggerExit2D (Collider2D c) {
-        print(c.name + " exit");
         if (c.tag.Equals("Player")) {
             _preventClosing = false;
         }

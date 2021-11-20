@@ -13,13 +13,13 @@ TagManager:
   - Water
   - UI
   - Ignore
-  - Player
   - 
+  - Past
+  - Present
+  - Persistent
   - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerPast
+  - PlayerPresent
   - 
   - 
   - 
