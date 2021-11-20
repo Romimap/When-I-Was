@@ -311,6 +311,18 @@ TextureImporter:
   - first:
       213: 6267466981475078809
     second: factory-sprites_102
+  - first:
+      213: -2761741311330714271
+    second: factory-sprites_104
+  - first:
+      213: 8295130197148552780
+    second: factory-sprites_105
+  - first:
+      213: -305350922851023173
+    second: factory-sprites_106
+  - first:
+      213: 2145365285070007227
+    second: factory-sprites_107
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -333,7 +345,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -556,7 +567,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.375, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -572,7 +583,7 @@ TextureImporter:
       name: factory-sprites_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 240
         y: 112
         width: 16
         height: 16
@@ -593,7 +604,7 @@ TextureImporter:
       name: factory-sprites_9
       rect:
         serializedVersion: 2
-        x: 144
+        x: 256
         y: 112
         width: 16
         height: 16
@@ -2642,6 +2653,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: factory-sprites_104
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d7c90e8e25ca9d0800000000000000
+      internalID: -2761741311330714271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_105
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ec7aef6f83e1370800000000000000
+      internalID: 8295130197148552780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_106
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 112
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb680a714fc23cbf0800000000000000
+      internalID: -305350922851023173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_107
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 112
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbb6d023c5ed5cd10800000000000000
+      internalID: 2145365285070007227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2652,111 +2747,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      factory-sprites_88: -342745519082912281
-      factory-sprites_94: 3272035523094248854
-      factory-sprites_8: -2227532250520979344
-      factory-sprites_96: 6277426802706697201
-      factory-sprites_62: 783855442801997315
-      factory-sprites_81: -2249733282851173571
-      factory-sprites_16: -8978322081945057905
-      factory-sprites_42: -6134062528627305106
-      factory-sprites_72: -1041201992756161078
-      factory-sprites_40: 8605740680843261441
-      factory-sprites_7: 678788315704691761
-      factory-sprites_13: -8419862923594494783
-      factory-sprites_93: -7043123410454676771
-      factory-sprites_12: 2952485558975074264
-      factory-sprites_27: -4099956997738534142
-      factory-sprites_31: 5295134399718126337
-      factory-sprites_43: -651353490844977857
-      factory-sprites_5: 3212111570692083229
-      factory-sprites_89: 8764916618155758502
-      factory-sprites_75: 8817101504697474690
-      factory-sprites_38: -8305381739459374895
-      factory-sprites_73: 4661943420167952332
-      factory-sprites_0: -6476891542557069850
-      factory-sprites_77: -5944023822272938978
-      factory-sprites_78: 667516573543002381
-      factory-sprites_9: 3289941538580025072
-      factory-sprites_52: -7678110833826970934
-      factory-sprites_36: -2787099379436915048
-      factory-sprites_49: 7391911471201821355
-      factory-sprites_64: 267813836182178760
-      factory-sprites_10: 5361827960524324654
-      factory-sprites_55: 1839211850072758541
-      factory-sprites_48: 297157277409223896
-      factory-sprites_33: 1889455814448099217
-      factory-sprites_99: -8376509386481582850
-      factory-sprites_11: -8549876001057318913
-      factory-sprites_30: 5266230543155755505
-      factory-sprites_58: -4594722965449533538
-      factory-sprites_23: -5994072789099922336
-      factory-sprites_21: 5883818992741600912
-      factory-sprites_45: -7248907693605886906
-      factory-sprites_41: -6517863615825116297
-      factory-sprites_79: -1686101134693285874
-      factory-sprites_68: 7821539258173363162
-      factory-sprites_3: -2324464682180874011
-      factory-sprites_17: -7050989526436278457
-      factory-sprites_69: 8995801165995277583
-      factory-sprites_67: 1453707737350729861
-      factory-sprites_37: 8751160898439263648
-      factory-sprites_83: 451072236346283272
-      factory-sprites_59: -7861287510375816541
-      factory-sprites_103: 2051039578
-      factory-sprites_54: -1139367216592751326
-      factory-sprites_32: -2693546113776437861
-      factory-sprites_82: -1007381357418669611
-      factory-sprites_74: -869923567536607317
-      factory-sprites_71: -3516260806020945115
-      factory-sprites_90: 1504858358858566180
-      factory-sprites_60: -1117168880705530995
-      factory-sprites_76: 4563156271288295330
-      factory-sprites_102: 6267466981475078809
-      factory-sprites_70: -7848882307206863649
-      factory-sprites_28: 5236606458579032888
-      factory-sprites_34: -8187506714944035268
-      factory-sprites_101: 2629491678244507872
-      factory-sprites_22: -2280079033184829733
-      factory-sprites_50: 347357048706521940
-      factory-sprites_18: -1749482104099638471
-      factory-sprites_29: 5088931931069112240
-      factory-sprites_15: 1190508678041608872
-      factory-sprites_95: 4100374370815770673
-      factory-sprites_98: -5037599062247449817
-      factory-sprites_87: -3983298755875943413
-      factory-sprites_2: -1470042559754290658
-      factory-sprites_35: -6598033848296937712
-      factory-sprites_86: -6891646350226583266
-      factory-sprites_91: -3047681112810240429
-      factory-sprites_97: -2288046537845728318
-      factory-sprites_6: 4338416631547254216
-      factory-sprites_46: -4666057618718305183
-      factory-sprites_51: -3801385206620579435
-      factory-sprites_47: -4418839681251816787
-      factory-sprites_44: -983696356590869074
-      factory-sprites_14: -216945385196782574
-      factory-sprites_61: 8203150998218249177
-      factory-sprites_1: -4618975682475429226
-      factory-sprites_63: 5090891019366206897
-      factory-sprites_85: 1592757080286683587
-      factory-sprites_19: -2201804854640328257
-      factory-sprites_57: -8220052368764330013
-      factory-sprites_66: 1936647250432337905
-      factory-sprites_84: -1491882244023255840
-      factory-sprites_53: 3361842729293633427
-      factory-sprites_56: -4947588743212525723
-      factory-sprites_26: -3508041815938925652
-      factory-sprites_20: -8227672357884400261
-      factory-sprites_65: 271077697701957932
-      factory-sprites_92: 3440545813225279905
-      factory-sprites_100: 484598695393510015
-      factory-sprites_80: 2963679732885757818
-      factory-sprites_25: 3980852836378274027
-      factory-sprites_4: -8591127839627463668
-      factory-sprites_39: -2939268449881829195
-      factory-sprites_24: 6106496356028299225
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

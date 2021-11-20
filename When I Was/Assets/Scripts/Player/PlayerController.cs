@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     public Material SceneRenderMaterial;
 
+    
+    
     bool useDoubleJump = false;
     bool doubleJump = false;
     bool useWallJump = false;
@@ -163,6 +165,7 @@ public class PlayerController : MonoBehaviour
                 Vector2 pos = new Vector2(transform.position.x, transform.position.y);
                 float diff = _height - (pos - hit2D.point).magnitude;
                 transform.position += Vector3.up * diff;
+               
                 _lastOnGroundAt = Time.time;
                 _heightOffset = 5;
             }
