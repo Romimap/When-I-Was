@@ -17,7 +17,16 @@ public class PhysicsObject : MonoBehaviour
     protected Rigidbody2D body;
 
     //collisions
+    
+    protected int pastLayer = 7;
+    protected int presentLayer = 8;
+    protected int persistentLayer = 9;
+    
     protected ContactFilter2D contactFilter;
+    
+    protected ContactFilter2D contactFilterPast;
+    protected ContactFilter2D contactFilterPresent;
+    
     protected RaycastHit2D[] hitBuff = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBuffList = new List<RaycastHit2D>(16);
 
@@ -34,16 +43,19 @@ public class PhysicsObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        contactFilter.useTriggers = false;
-        contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
-        contactFilter.useLayerMask = true;
+        contactFilterPast.SetLayerMask(Physics2D.GetLayerCollisionMask(pastLayer));
+        contactFilterPresent.SetLayerMask(Physics2D.GetLayerCollisionMask(presentLayer));
+      
+        contactFilterPast.useLayerMask = true;
+        contactFilterPresent.useLayerMask = true;
+
+        contactFilter = contactFilterPresent;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        targetVelocity = Vector2.zero;
-        ComputeVelocity();
     }
 
     protected virtual void ComputeVelocity()
@@ -78,12 +90,13 @@ public class PhysicsObject : MonoBehaviour
         if(distance > minMoveDist)
         {
             int count = body.Cast(move, contactFilter, hitBuff, distance + shellRadius);
+
             hitBuffList.Clear();
             for(int i = 0; i < count; i++)
             {
                 hitBuffList.Add(hitBuff[i]);
             }
-
+            
             foreach (RaycastHit2D hit in hitBuffList)
             {
                 Vector2 currentNormal = hit.normal;
