@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public int Level { get { return level; } set { level = value; } }
     
     bool doubleJump = false;
-    bool usedDoubleJump = false;
+    public bool usedDoubleJump = false;
     bool usedWallJump = false;
 
     private enum State {

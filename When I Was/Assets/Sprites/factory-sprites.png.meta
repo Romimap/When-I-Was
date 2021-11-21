@@ -335,6 +335,9 @@ TextureImporter:
   - first:
       213: 7286193792056400150
     second: factory-sprites_111
+  - first:
+      213: 1754737487729599977
+    second: factory-sprites_112
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2917,6 +2920,27 @@ TextureImporter:
       bones: []
       spriteID: 6199d2466a2cd1560800000000000000
       internalID: 7286193792056400150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_112
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 112
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e52f26b2741a5810800000000000000
+      internalID: 1754737487729599977
       vertices: []
       indices: 
       edges: []
