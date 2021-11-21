@@ -102,9 +102,9 @@ public class PlayerController : MonoBehaviour
         _momentum = _rb.velocity;
 
         RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, new Vector2(1, 0),
-            7.0f, (int) Mathf.Pow(2, currentWorldLayer));
+            9.0f, (int) Mathf.Pow(2, currentWorldLayer));
         RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, new Vector2(-1, 0),
-            7.0f, (int) Mathf.Pow(2, currentWorldLayer));
+            9.0f, (int) Mathf.Pow(2, currentWorldLayer));
         // Debug.DrawRay(transform.position, new Vector2(10.0f, 0),
         //     Color.blue, 0.1f);
 
