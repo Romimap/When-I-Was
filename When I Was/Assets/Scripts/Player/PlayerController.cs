@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
 
     protected void Death()
     {
-        this.transform.position = spawnPoint.transform.position;
+        this.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, 0);
         _rb.velocity = new Vector2(0, 0);
     }
 }
