@@ -20,9 +20,6 @@ public class PlayerController : MonoBehaviour
     public float acceleration = 0.1f;
     public float airAcceleration = 0.05f;
     public float speed = 30;
-    public KeyCode left;
-    public KeyCode right;
-    public KeyCode jump;
 
     public GameObject past;
     public GameObject present;
