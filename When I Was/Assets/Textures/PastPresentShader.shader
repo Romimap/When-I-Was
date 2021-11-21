@@ -4,6 +4,7 @@ Shader "Unlit/PastPresentShader"
     {
         _PastTex ("Past Texture", 2D) = "white" {}
         _PresentTex ("Present Texture", 2D) = "white" {}
+        _Noisetex ("Noise Texture", 2D) = "white" {}
 
         _Color_SlopeA("Slope Color Past", Color) = (1,1,1,1)
         _SlopeA ("Slope Past", Range(0, 2)) = 1.0
@@ -19,6 +20,7 @@ Shader "Unlit/PastPresentShader"
         _PowerB ("Power Present", Range(0, 2)) = 1.0
 
         _Blend ("Blend", Range(0, 1)) = 0.0
+        _Noise ("Noise", Range(0, 1)) = 0.0
     }
     SubShader
     {
@@ -51,7 +53,11 @@ Shader "Unlit/PastPresentShader"
             sampler2D _PresentTex;
             float4 _PresentTex_ST;
 
+            sampler2D _Noisetex;
+            sampler2D _Noisetex_ST;
+
             float _Blend;
+            float _Noise;
 
             float4 _Color_SlopeA;
             float4 _Color_OffsetA;
@@ -96,9 +102,12 @@ Shader "Unlit/PastPresentShader"
                 deviation *= blend * 0.1 + 0.05;
                 float light = remap(sin((i.uv[1] + deviation[1]) * 800), -1, 1, 0.7, 1);
 
+                i.uv[0] += (sin(i.uv[1] * 10 + _Time[3]) * _Noise * 0.01);
+
                 // sample the texture
                 fixed4 cola = tex2D(_PastTex, i.uv + deviation);
                 fixed4 colb = tex2D(_PresentTex, i.uv + deviation);
+                fixed4 noise = tex2D(_Noisetex, (i.uv + deviation + float2(_Time[3] * 31, _Time[3] * 37)) / 4);
 
                 // color correction ASC-CDL
                 cola[0] = pow((max(0, cola[0] * _SlopeA * _Color_SlopeA[0]) + _OffsetA * _Color_OffsetA[0]), _PowerA * _Color_PowerA[0]);
@@ -113,8 +122,12 @@ Shader "Unlit/PastPresentShader"
                 colb *= light;
                 colb[3] = 1.0;
 
+                float noiseStr = remap(_Noise, 0, 1, 0.05, 0.5);
+
+                fixed4 pastpresentcolor = (cola * blend + colb * (1 - blend));
+                fixed4 noisecolor = pastpresentcolor * noise * 3 + noise * 0.3;
                 // blend
-                return cola * blend + colb * (1 - blend);
+                return  pastpresentcolor * (1 - noiseStr) + noisecolor * noiseStr;
             }
             ENDCG
         }

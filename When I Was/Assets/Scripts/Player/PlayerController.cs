@@ -225,6 +225,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                noiseTimer = 1;
                 Debug.LogError("Collision !");
             }
         }
@@ -250,6 +251,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    float noiseTimer = 0;
     IEnumerator RenderBlendCoroutine () {
         float timer = 0;
         while (true) {
@@ -259,7 +261,13 @@ public class PlayerController : MonoBehaviour
                 timer += Time.deltaTime * 2;
             }
             timer = Mathf.Clamp01(timer);
+
+            noiseTimer -= Time.deltaTime * 2;
+            noiseTimer = Mathf.Clamp01(noiseTimer);
+
             SceneRenderMaterial.SetFloat("_Blend", timer);
+            SceneRenderMaterial.SetFloat("_Noise", noiseTimer);
+
 
             yield return new WaitForEndOfFrame();
         }
