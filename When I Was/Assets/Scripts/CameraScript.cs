@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class CameraScript : MonoBehaviour
 {
@@ -8,9 +10,11 @@ public class CameraScript : MonoBehaviour
     public Transform followTransform;
     //public BoxCollider2D mapBounds;
 
-
-    //private float xMin, xMax, yMin, yMax;
-    //private float camY, camX;
+    public Transform player;
+    public float FollowSpeed = 2f;// Smooth Follow 
+    public Vector3 offset;
+    private float xMin, xMax, yMin, yMax;
+    private float camY, camX;
     private float camOrthsize;
     private float cameraRatio;
     private Camera mainCam;
@@ -34,6 +38,11 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         
+        
+        Vector3 newPosition = player.transform.position + offset;
+        newPosition.x += player.GetComponent<PlayerController>()._momentum.x ;
+        newPosition.z = -10;
+        transform.position = Vector3.Lerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()

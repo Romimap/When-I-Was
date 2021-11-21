@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Box
   - Danger
   layers:
   - Default
@@ -14,12 +15,12 @@ TagManager:
   - UI
   - Ignore
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Past
+  - Present
+  - Persistent
+  - PlayerSkin
+  - PlayerPast
+  - PlayerPresent
   - 
   - 
   - 

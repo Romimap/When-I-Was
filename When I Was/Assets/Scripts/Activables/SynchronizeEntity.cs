@@ -14,7 +14,7 @@ public class SynchronizeEntity : Activatable {
     // Update is called once per frame
     void Update() {
         if (FutureEntity != null && Moved) {
-            FutureEntity.transform.position = transform.position + __DEBUGOFFSET;
+            FutureEntity.transform.position = transform.position;// + __DEBUGOFFSET;
             FutureEntity.transform.rotation = transform.rotation;
             _previousPosition = transform.position;
         }

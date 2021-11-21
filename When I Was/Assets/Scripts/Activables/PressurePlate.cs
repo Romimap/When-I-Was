@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PressurePlate : Activatable {
     public Activatable link;
+    private List<Collider2D> colliders = new List<Collider2D>();
     // Start is called before the first frame update
     void Start() {
         Deactivate();
@@ -22,16 +23,20 @@ public class PressurePlate : Activatable {
     }
 
     private void OnTriggerEnter2D (Collider2D c) {
-        print(c.name + " enter");
         if (c.tag.Equals("Player") || c.tag.Equals("Box")) {
-            Activate();
+            if (colliders.Count == 0) Activate();
+            if (!colliders.Contains(c)) {
+                colliders.Add(c);
+            }
         }
     }
 
     private void OnTriggerExit2D (Collider2D c) {
-        print(c.name + " exit");
         if (c.tag.Equals("Player") || c.tag.Equals("Box")) {
-            Deactivate();
+            if (colliders.Contains(c)) {
+                colliders.Remove(c);
+            }
+            if (colliders.Count == 0) Deactivate();
         }
     }
 }
