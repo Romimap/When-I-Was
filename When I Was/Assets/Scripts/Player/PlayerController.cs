@@ -47,6 +47,13 @@ public class PlayerController : MonoBehaviour
     bool usedDoubleJump = false;
     bool usedWallJump = false;
 
+    float traveledDistance = 0;
+    public float PlayStepSoundEvery = 8;
+    Vector3 previousPos;
+    public AudioSource stepSound;
+    public AudioSource jumpSound;
+    public AudioSource swapSound;
+
     private enum State {
         Past, Present
     };
@@ -82,9 +89,13 @@ public class PlayerController : MonoBehaviour
         initializeGO();
 
         StartCoroutine("RenderBlendCoroutine");
+
+        previousPos = transform.position;
+
     }
 
     void Update() {
+
         //Inputs
         float x = Input.GetAxis("Horizontal");
         bool jump = Input.GetKeyDown(KeyCode.Space);
@@ -112,10 +123,19 @@ public class PlayerController : MonoBehaviour
         }
 
         if (OnGround) {
+
+            traveledDistance += (transform.position - previousPos).magnitude;
+            if (traveledDistance > PlayStepSoundEvery) {
+                traveledDistance -= PlayStepSoundEvery;
+                stepSound.Play();
+                previousPos = transform.position;
+            }
+
             if (jump)
             {
                 _momentum.y = jumpForce;
                 _heightOffset = 0f;
+                jumpSound.Play();
             }
             else
             {
@@ -128,14 +148,19 @@ public class PlayerController : MonoBehaviour
         
         else if (doubleJump)
         {
+            jumpSound.Play();
+
             _momentum.y = jumpForce;
             _heightOffset = 0f;
             doubleJump = false;
             usedDoubleJump = true;
+
         }
         
         else if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump)
         {
+            jumpSound.Play();
+
             _momentum.x = -wallJumpForce.x;
             _momentum.y = wallJumpForce.y;
             _heightOffset = 0f;
@@ -144,6 +169,8 @@ public class PlayerController : MonoBehaviour
         
         else if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump)
         {
+            jumpSound.Play();
+
             _momentum.x = wallJumpForce.x;
             _momentum.y = wallJumpForce.y;
             _heightOffset = 0f;
@@ -212,6 +239,8 @@ public class PlayerController : MonoBehaviour
 
                 showBranch(pastParent);
                 hideBranch(presentParent);
+
+                swapSound.Play();
             }
             else if (gabbyState == State.Past && collisionsPresent.Count == 0)
             {
@@ -222,6 +251,8 @@ public class PlayerController : MonoBehaviour
 
                 showBranch(presentParent);
                 hideBranch(pastParent);
+
+                swapSound.Play();
             }
             else
             {
