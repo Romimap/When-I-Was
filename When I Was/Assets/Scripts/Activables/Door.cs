@@ -18,6 +18,7 @@ public class Door : Activatable {
     }
 
     public override void Activate() {
+        if (_activated) return;
         GetComponent<Animator>().SetBool("Opened", true);
         base.Activate();
     }
