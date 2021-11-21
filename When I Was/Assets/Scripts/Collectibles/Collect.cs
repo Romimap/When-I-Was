@@ -14,8 +14,9 @@ public class Collect : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
         GameData.SCORE += 1;
-        score.SetText( "CHICKEN : " + GameData.SCORE.ToString());
         Destroy(gameObject);
+        score.SetText( "CHICKEN : " + GameData.SCORE.ToString());
+        
     }
     
 }
