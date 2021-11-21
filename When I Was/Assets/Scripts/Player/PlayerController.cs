@@ -21,10 +21,6 @@ public class PlayerController : MonoBehaviour
     public float airAcceleration = 0.05f;
     public float speed = 30;
 
-    public GameObject past;
-    public GameObject present;
-    public GameObject persistent;
-
     protected int pastLayer = 8;
     protected int presentLayer = 9;
     protected int persistentLayer = 10;
@@ -61,9 +57,6 @@ public class PlayerController : MonoBehaviour
 
     public float circleRadius = 6f;
 
-    public GameObject pastParent; //objects to hide when we switch to present
-    public GameObject presentParent; // same but vice-versa
-
     public GameObject spawnPoint;//where the character respawns on death
 
     Rigidbody2D _rb;
@@ -86,7 +79,7 @@ public class PlayerController : MonoBehaviour
         contactFilterPresent.useLayerMask = true;
         currentWorldLayer = presentLayer;
 
-        initializeGO();
+        //initializeGO();
 
         StartCoroutine("RenderBlendCoroutine");
 
@@ -232,8 +225,8 @@ public class PlayerController : MonoBehaviour
                 gameObject.layer = playerPastLayer;
                 currentWorldLayer = pastLayer;
 
-                showBranch(pastParent);
-                hideBranch(presentParent);
+                //showBranch(pastParent);
+                //hideBranch(presentParent);
 
                 swapSound.Play();
             }
@@ -244,8 +237,8 @@ public class PlayerController : MonoBehaviour
                 gameObject.layer = playerPresentLayer;
                 currentWorldLayer = presentLayer;
 
-                showBranch(presentParent);
-                hideBranch(pastParent);
+                //showBranch(presentParent);
+                //hideBranch(pastParent);
 
                 swapSound.Play();
             }
@@ -299,11 +292,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void initializeGO()
-    {
-        showBranch(presentParent);
-        hideBranch(pastParent);
-    }
+    //void initializeGO()
+    //{
+    //    showBranch(presentParent);
+    //    hideBranch(pastParent);
+    //}
 
     //void SetVisibility (GameObject o, bool visible) {
     //    Renderer r = o.GetComponent<Renderer>();
