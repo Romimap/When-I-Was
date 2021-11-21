@@ -20,9 +20,6 @@ public class PlayerController : MonoBehaviour
     public float acceleration = 0.1f;
     public float airAcceleration = 0.05f;
     public float speed = 30;
-    public KeyCode left;
-    public KeyCode right;
-    public KeyCode jump;
 
     public GameObject past;
     public GameObject present;
@@ -89,9 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void Update() {
         //Inputs
-        float x = 0;
-        if (Input.GetKey(left)) x -= 1;
-        if (Input.GetKey(right)) x += 1;
+        float x = Input.GetAxis("Horizontal");
         bool jump = Input.GetKeyDown(KeyCode.Space);
 
         if (Grabbed != null) {
