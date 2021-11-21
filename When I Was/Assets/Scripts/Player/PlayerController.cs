@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 grabbedOffset;
 
     private int level = 0;
+    public int Level { get { return level; } set { level = value; } }
     
     bool doubleJump = false;
     bool usedDoubleJump = false;
