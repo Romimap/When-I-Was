@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject groundLevel;
 
     public float coyoteTime = 0.1f;
+    public float airCoyoteTime = 0.1f;
+
     public float jumpForce = 100;
     public Vector2 wallJumpForce = new Vector2(170, 100);
     public float gravity = 10;
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource stepSound;
     public AudioSource jumpSound;
     public AudioSource swapSound;
+
+    float airInputOffsetTimer = 0;
 
     private enum State {
         Past, Present
@@ -127,6 +131,8 @@ public class PlayerController : MonoBehaviour
             if (jump)
             {
                 _momentum.y = jumpForce;
+                airInputOffsetTimer = airCoyoteTime;
+
                 _heightOffset = 0f;
                 jumpSound.Play();
             }
@@ -141,6 +147,8 @@ public class PlayerController : MonoBehaviour
         else if (doubleJump)
         {
             jumpSound.Play();
+            airInputOffsetTimer = airCoyoteTime;
+
 
             _momentum.y = jumpForce;
             _heightOffset = 0f;
@@ -151,6 +159,8 @@ public class PlayerController : MonoBehaviour
         else if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump)
         {
             jumpSound.Play();
+            airInputOffsetTimer = airCoyoteTime;
+
 
             _momentum.x = -wallJumpForce.x;
             _momentum.y = wallJumpForce.y;
@@ -160,6 +170,7 @@ public class PlayerController : MonoBehaviour
         else if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump)
         {
             jumpSound.Play();
+            airInputOffsetTimer = airCoyoteTime;
 
             _momentum.x = wallJumpForce.x;
             _momentum.y = wallJumpForce.y;
@@ -168,10 +179,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            airInputOffsetTimer -= Time.deltaTime;
             usedWallJump = false;
             if (level >= 1 && !usedDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
             _momentum.y -= gravity * Time.deltaTime;
-            if (Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) {
+            if ((Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) && airInputOffsetTimer < 0) {
                 _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
             }
         }
