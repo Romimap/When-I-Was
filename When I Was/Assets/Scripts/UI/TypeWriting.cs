@@ -12,25 +12,27 @@ public class TypeWriting : MonoBehaviour
     TextMeshProUGUI txt;
     string story;
 
-    void Awake () 
+    public void Awake()
     {
         txt = GetComponent<TextMeshProUGUI>();
-        story = txt.text;
-
     }
 
-    private void OnEnable()
+    public void displayText( string story )
     {
-        StartCoroutine ("PlayText");
+        StartCoroutine ("PlayText", story);
     }
 
-    IEnumerator PlayText()
+    public void stopDisplaying()
+    {
+        StopCoroutine( "PlayText" );
+    }
+    IEnumerator PlayText( string story)
     {        
         txt.text = "";
         foreach (char c in story) 
         {
             txt.text += c;
-            yield return new WaitForSeconds (0.125f);
+            yield return new WaitForSeconds (0.02f);
         }
     }
 

@@ -125,7 +125,6 @@ public class PlayerController : MonoBehaviour
             _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
             usedDoubleJump = false;
         }
-        
         else if (doubleJump)
         {
             _momentum.y = jumpForce;
@@ -133,7 +132,6 @@ public class PlayerController : MonoBehaviour
             doubleJump = false;
             usedDoubleJump = true;
         }
-        
         else if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump)
         {
             _momentum.x = -wallJumpForce.x;
@@ -141,7 +139,6 @@ public class PlayerController : MonoBehaviour
             _heightOffset = 0f;
             usedWallJump = true;
         }
-        
         else if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump)
         {
             _momentum.x = wallJumpForce.x;
@@ -186,11 +183,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //Swap timeline
-        if (Input.GetKeyDown(KeyCode.LeftShift)){
+        if (level >= 3 && Input.GetKeyDown(KeyCode.LeftShift)){
             Grabbed = null;
-
-            Debug.Log("SWAP");
-
+            
             List<Collider2D> collisionsPast = new List<Collider2D>();
             List<Collider2D> collisionsPresent = new List<Collider2D>();
 
