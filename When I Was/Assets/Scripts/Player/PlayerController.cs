@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
     public GameObject pastParent; //objects to hide when we switch to present
     public GameObject presentParent; // same but vice-versa
 
+    public GameObject spawnPoint;//where the character respawns on death
+
     Rigidbody2D _rb;
 
     private bool OnGround
@@ -312,5 +314,17 @@ public class PlayerController : MonoBehaviour
     {
         level +=1; 
         Debug.Log( level );
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Danger"))
+            Death();
+    }
+
+    protected void Death()
+    {
+        this.transform.position = spawnPoint.transform.position;
+        _rb.velocity = new Vector2(0, 0);
     }
 }
