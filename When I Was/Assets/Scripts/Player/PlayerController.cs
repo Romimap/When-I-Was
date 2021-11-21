@@ -89,9 +89,7 @@ public class PlayerController : MonoBehaviour
 
     void Update() {
         //Inputs
-        float x = 0;
-        if (Input.GetKey(left)) x -= 1;
-        if (Input.GetKey(right)) x += 1;
+        float x = Input.GetAxis("Horizontal");
         bool jump = Input.GetKeyDown(KeyCode.Space);
 
         if (Grabbed != null) {
