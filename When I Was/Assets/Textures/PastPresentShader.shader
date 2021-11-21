@@ -94,13 +94,13 @@ Shader "Unlit/PastPresentShader"
                 float2 deviation = centeredUvScreen * distanceToCenter - (centeredUvScreen);
 
                 deviation *= blend * 0.1 + 0.05;
-                float light = remap(sin((i.uv[1] + deviation[1]) * 800), -1, 1, 0.7, 1) * blend;
+                float light = remap(sin((i.uv[1] + deviation[1]) * 800), -1, 1, 0.7, 1);
 
                 // sample the texture
                 fixed4 cola = tex2D(_PastTex, i.uv + deviation);
                 fixed4 colb = tex2D(_PresentTex, i.uv + deviation);
 
-                // color correction ASC-CDL 
+                // color correction ASC-CDL
                 cola[0] = pow((max(0, cola[0] * _SlopeA * _Color_SlopeA[0]) + _OffsetA * _Color_OffsetA[0]), _PowerA * _Color_PowerA[0]);
                 cola[1] = pow((max(0, cola[1] * _SlopeA * _Color_SlopeA[1]) + _OffsetA * _Color_OffsetA[1]), _PowerA * _Color_PowerA[1]);
                 cola[2] = pow((max(0, cola[2] * _SlopeA * _Color_SlopeA[2]) + _OffsetA * _Color_OffsetA[2]), _PowerA * _Color_PowerA[2]);
@@ -110,6 +110,7 @@ Shader "Unlit/PastPresentShader"
                 colb[0] = pow((max(0, colb[0] * _SlopeB * _Color_SlopeB[0]) + _OffsetB * _Color_OffsetB[0]), _PowerB * _Color_PowerB[0]);
                 colb[1] = pow((max(0, colb[1] * _SlopeB * _Color_SlopeB[1]) + _OffsetB * _Color_OffsetB[1]), _PowerB * _Color_PowerB[1]);
                 colb[2] = pow((max(0, colb[2] * _SlopeB * _Color_SlopeB[2]) + _OffsetB * _Color_OffsetB[2]), _PowerB * _Color_PowerB[2]);
+                colb *= light;
                 colb[3] = 1.0;
 
                 // blend
