@@ -86,7 +86,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _Noise: 0.13010433
+    - _Noise: 0
     - _OcclusionStrength: 1
     - _Offset: 0
     - _OffsetA: 0.15

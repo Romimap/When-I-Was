@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D Grabbed = null;
     private Vector3 grabbedOffset;
 
-    private int level = 0;
+    public int level = 0;
     public int Level { get { return level; } set { level = value; } }
     
     bool doubleJump = false;
@@ -342,9 +342,16 @@ public class PlayerController : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Danger"))
-            Death();
+            StartCoroutine(killPlayer());
     }
-
+    
+    private IEnumerator killPlayer()
+    {
+        yield return new WaitForSeconds(0.3f);
+       Death();
+        
+    }
+    
     protected void Death()
     {
         this.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, 0);
