@@ -53,24 +53,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _momentum: {x: 0, y: 0}
   groundLevel: {fileID: 9009244055067664058}
-  coyoteTime: 0.1
+  coyoteTime: 0.2
   jumpForce: 100
   wallJumpForce: {x: 100, y: 100}
   gravity: 200
   acceleration: 0.05
-  airAcceleration: 0.01
+  airAcceleration: 0.05
   speed: 50
-  past: {fileID: 0}
-  present: {fileID: 0}
-  persistent: {fileID: 0}
   SceneRenderMaterial: {fileID: 2100000, guid: 632238cbb59f29c4f8a268bd03f0c591, type: 2}
+  usedDoubleJump: 0
   PlayStepSoundEvery: 8
   stepSound: {fileID: 9009244054921501987}
   jumpSound: {fileID: 9009244054921501988}
   swapSound: {fileID: 9009244054921501989}
   circleRadius: 0.5
-  pastParent: {fileID: 0}
-  presentParent: {fileID: 0}
   spawnPoint: {fileID: 0}
 --- !u!50 &9009244054921502040
 Rigidbody2D:
