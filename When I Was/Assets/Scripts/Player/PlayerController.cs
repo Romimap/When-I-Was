@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float _height;
     private float _heightOffset;
     private float _lastOnGroundAt = 0;
-
+    
     public GameObject groundLevel;
 
     public float coyoteTime = 0.1f;
@@ -43,11 +43,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D Grabbed = null;
     private Vector3 grabbedOffset;
 
+    private int level = 0;
     
-    
-    bool useDoubleJump = false;
     bool doubleJump = false;
-    bool useWallJump = false;
+    bool usedDoubleJump = false;
+    bool usedWallJump = false;
 
     private enum State {
         Past, Present
@@ -125,38 +125,36 @@ public class PlayerController : MonoBehaviour
             }
 
             _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
-            useDoubleJump = false;
+            usedDoubleJump = false;
         }
+        
         else if (doubleJump)
         {
             _momentum.y = jumpForce;
             _heightOffset = 0f;
             doubleJump = false;
-            useDoubleJump = true;
+            usedDoubleJump = true;
         }
-
-        else if (hit2DWallRight.collider != null && !useWallJump && jump)
+        
+        else if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump)
         {
-            if (jump && !useWallJump)
-            {
-                _momentum.x = -wallJumpForce.x;
-                _momentum.y = wallJumpForce.y;
-                _heightOffset = 0f;
-                useWallJump = true;
-            }
+            _momentum.x = -wallJumpForce.x;
+            _momentum.y = wallJumpForce.y;
+            _heightOffset = 0f;
+            usedWallJump = true;
         }
-        else if (hit2DWallLeft.collider != null && !useWallJump && jump)
+        
+        else if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump)
         {
             _momentum.x = wallJumpForce.x;
             _momentum.y = wallJumpForce.y;
             _heightOffset = 0f;
-            useWallJump = true;
+            usedWallJump = true;
         }
-
         else
         {
-            useWallJump = false;
-            if (!useDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
+            usedWallJump = false;
+            if (level >= 1 && !usedDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
             _momentum.y -= gravity * Time.deltaTime;
             if (Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) {
                 _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
@@ -180,7 +178,6 @@ public class PlayerController : MonoBehaviour
                 _heightOffset = 0;
             }
         }
-
         //Animation
         if (_momentum.x > 1 && _sr.flipX) {
             _sr.flipX = false;
@@ -309,5 +306,11 @@ public class PlayerController : MonoBehaviour
             //TODO
             SetVisibility(o.transform.GetChild(i).gameObject, visible);
         }
+    }
+
+    public void powerUp(  )
+    {
+        level +=1; 
+        Debug.Log( level );
     }
 }
