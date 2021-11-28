@@ -50,6 +50,14 @@ public class PlayerController : MonoBehaviour
 
     float airInputOffsetTimer = 0;
 
+    private bool airAccelerationInterpolation = false;
+    private bool accelerationInterpolation = true;
+    private bool gravityInterpolation = true;
+    private bool useLowGravity = false;
+    private bool jumpCommand = false;
+    private bool leftWallJumpCommand = false;
+    private bool rightWallJumpCommand = false;
+
     private enum State {
         Past, Present
     };
@@ -95,8 +103,7 @@ public class PlayerController : MonoBehaviour
             Grabbed.velocity = (transform.position + grabbedOffset - Grabbed.transform.position) * 10;
         }
 
-        //Movement
-        _momentum = _rb.velocity;
+        
 
         RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, new Vector2(1, 0),
             9.0f, (int) Mathf.Pow(2, currentWorldLayer));
@@ -113,72 +120,55 @@ public class PlayerController : MonoBehaviour
         }
 
         if (OnGround) {
-
-            if (jump)
-            {
-                _momentum.y = jumpForce;
-                airInputOffsetTimer = airCoyoteTime;
-
-                _heightOffset = 0f;
-                jumpSound.Play();
+            gravityInterpolation = false;
+            accelerationInterpolation = true;
+            if (jump) {
+                jumpCommand = true;
+            } else {
+                _rb.velocity = new Vector2(_rb.velocity.x, 0);
             }
-            else
-            {
-                _momentum.y = 0;
-            }
-
-            _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
             usedDoubleJump = false;
-        }
-        else if (doubleJump)
-        {
-            jumpSound.Play();
-            airInputOffsetTimer = airCoyoteTime;
-
-
-            _momentum.y = jumpForce;
-            _heightOffset = 0f;
-            doubleJump = false;
-            usedDoubleJump = true;
-
-        }
-        else if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump)
-        {
-            jumpSound.Play();
-            airInputOffsetTimer = airCoyoteTime;
-
-
-            _momentum.x = -wallJumpForce.x;
-            _momentum.y = wallJumpForce.y;
-            _heightOffset = 0f;
-            usedWallJump = true;
-        }
-        else if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump)
-        {
-            jumpSound.Play();
-            airInputOffsetTimer = airCoyoteTime;
-
-            _momentum.x = wallJumpForce.x;
-            _momentum.y = wallJumpForce.y;
-            _heightOffset = 0f;
-            usedWallJump = true;
-        }
-        else
-        {
-            airInputOffsetTimer -= Time.deltaTime;
+        } else {
+            accelerationInterpolation = false;
+            gravityInterpolation = true;
             usedWallJump = false;
-            if (level >= 1 && !usedDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
-            _momentum.y -= gravity * Time.deltaTime;
-            if ((Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) && airInputOffsetTimer < 0) {
-                _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
-            }
-        }
 
-        //Set Velocity
-        _rb.velocity = _momentum;
+            if (level >= 1 && !usedDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
+
+            if ((Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) && airInputOffsetTimer < 0) {
+                airAccelerationInterpolation = true;
+            } else {
+                airAccelerationInterpolation = false;
+            }
+
+            airInputOffsetTimer -= Time.deltaTime;
+
+
+            if (doubleJump && !jumpCommand) {
+                jumpCommand = true;
+                doubleJump = false;
+                usedDoubleJump = true;
+            }
+            if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump && !leftWallJumpCommand) {
+                leftWallJumpCommand = true;
+                usedWallJump = true;
+            }
+            if (hit2DWallLeft.collider != null && !usedWallJump && level >= 2 && jump && !rightWallJumpCommand) {
+                rightWallJumpCommand = true;
+                usedWallJump = true;
+            }
+
+            if (hit2DWallRight.collider != null || hit2DWallLeft.collider != null) {
+                useLowGravity = true;
+            } else {
+                useLowGravity = false;
+            }
+        } 
+
+        
 
         //Snap to ground
-        if (_momentum.y <= 0) {
+        if (_rb.velocity.y <= 0) {
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, new Vector2(0, -1), _height + _heightOffset, (int) Mathf.Pow(2, currentWorldLayer));
             if (hit2D.collider != null) {
                 Vector2 pos = new Vector2(transform.position.x, transform.position.y);
@@ -192,11 +182,11 @@ public class PlayerController : MonoBehaviour
             }
         }
         //Animation
-        if (_momentum.x > 1 && _sr.flipX) {
+        if (_rb.velocity.x > 1 && _sr.flipX) {
             _sr.flipX = false;
         }
 
-        if (_momentum.x < -1 && !_sr.flipX) {
+        if (_rb.velocity.x < -1 && !_sr.flipX) {
             _sr.flipX = true;
         }
 
@@ -250,15 +240,22 @@ public class PlayerController : MonoBehaviour
         //Grab objects
         if (Input.GetKeyDown(KeyCode.LeftControl)) {
             Vector2 direction = new Vector2(1, 0);
-            if (_sr.flipX) {
-                direction = -direction;
-            }
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, 10, (int)Mathf.Pow(2, currentWorldLayer));
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, 15, (int)Mathf.Pow(2, currentWorldLayer));
             if (hit2D.collider != null) {
                 Rigidbody2D hit = hit2D.collider.gameObject.GetComponent<Rigidbody2D>();
                 Grabbed = hit;
                 if (Grabbed != null) {
                     grabbedOffset = Grabbed.transform.position - transform.position + new Vector3(direction.x, direction.y, 0) * 2;
+                }
+            } else {
+                direction = -direction;
+                hit2D = Physics2D.Raycast(transform.position, direction, 15, (int)Mathf.Pow(2, currentWorldLayer));
+                if (hit2D.collider != null) {
+                    Rigidbody2D hit = hit2D.collider.gameObject.GetComponent<Rigidbody2D>();
+                    Grabbed = hit;
+                    if (Grabbed != null) {
+                        grabbedOffset = Grabbed.transform.position - transform.position + new Vector3(direction.x, direction.y, 0) * 2;
+                    }
                 }
             }
         } if (Input.GetKeyUp(KeyCode.LeftControl) && Grabbed != null) {
@@ -288,6 +285,57 @@ public class PlayerController : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private void FixedUpdate () {
+        //Movement
+        _momentum = _rb.velocity;
+
+        if (airAccelerationInterpolation) {
+            _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
+        }
+        if (accelerationInterpolation) {
+            _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
+        }
+        if (gravityInterpolation) {
+            if (useLowGravity) {
+                _momentum.y -= gravity * Time.fixedDeltaTime * 0.5f;
+            } else {
+                _momentum.y -= gravity * Time.fixedDeltaTime;
+            }
+        }
+        if (jumpCommand && !leftWallJumpCommand && !rightWallJumpCommand) {
+            _momentum.y = jumpForce;
+
+            airInputOffsetTimer = airCoyoteTime;
+            _heightOffset = 0f;
+            jumpSound.Play();
+
+            jumpCommand = false;
+        } 
+        if (leftWallJumpCommand) {
+            _momentum.y = wallJumpForce.y;
+            _momentum.x = -wallJumpForce.x;
+
+            airInputOffsetTimer = airCoyoteTime;
+            _heightOffset = 0f;
+            jumpSound.Play();
+
+            leftWallJumpCommand = false;
+        }
+        if (rightWallJumpCommand) {
+            _momentum.y = wallJumpForce.y;
+            _momentum.x = wallJumpForce.x;
+
+            airInputOffsetTimer = airCoyoteTime;
+            _heightOffset = 0f;
+            jumpSound.Play();
+
+            rightWallJumpCommand = false;
+        }
+
+        //Set Velocity
+        _rb.velocity = _momentum;
     }
 
     //void initializeGO()
