@@ -25,6 +25,7 @@ public class FiringEnemy : MonoBehaviour
         {
             delay = 0;
             GameObject newLaser = Instantiate(weaponPrefab, transform.position, transform.rotation);
+            newLaser.layer = this.gameObject.layer;
         }
     }
 }
