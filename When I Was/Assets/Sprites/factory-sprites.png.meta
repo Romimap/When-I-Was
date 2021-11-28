@@ -338,6 +338,12 @@ TextureImporter:
   - first:
       213: 1754737487729599977
     second: factory-sprites_112
+  - first:
+      213: -2466503804666197743
+    second: factory-sprites_113
+  - first:
+      213: 8088135055615230336
+    second: factory-sprites_114
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2969,6 +2975,48 @@ TextureImporter:
       bones: []
       spriteID: 9e52f26b2741a5810800000000000000
       internalID: 1754737487729599977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_113
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119c8b59bd735cdd0800000000000000
+      internalID: -2466503804666197743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: factory-sprites_114
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0818455faf3de3070800000000000000
+      internalID: 8088135055615230336
       vertices: []
       indices: 
       edges: []
