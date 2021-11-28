@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3368362726451856558}
   - component: {fileID: 3368362726451856561}
   - component: {fileID: 3368362726451856560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3368362726451856563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.5535, y: 20.672817, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edad9c52230cd0a42953395251304ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoF: 0.5
+  RoF: 0.4
   weaponPrefab: {fileID: 5607836954802498221, guid: 316ffdc580d6f9d478fe5a0b0f4bccab,
     type: 3}
