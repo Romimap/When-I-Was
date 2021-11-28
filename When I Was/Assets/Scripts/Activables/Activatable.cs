@@ -5,8 +5,8 @@ using UnityEngine;
 public class Activatable : MonoBehaviour {
     public Activatable FutureEntity = null;
     public Activatable PastEntity = null;
-    public AudioSource onActivate = null;
-    public AudioSource onDectivate = null;
+    public FMODUnity.StudioEventEmitter onActivate = null;
+    public FMODUnity.StudioEventEmitter onDectivate = null;
 
     protected bool _activated = false;
 
@@ -23,7 +23,7 @@ public class Activatable : MonoBehaviour {
         if (FutureEntity != null) {
             FutureEntity.Deactivate();
         }
-        if (onActivate != null && FutureEntity == null) onDectivate.Play();
+        if (onDectivate != null && FutureEntity == null) onDectivate.Play();
     }
 
     public virtual void Toggle () {

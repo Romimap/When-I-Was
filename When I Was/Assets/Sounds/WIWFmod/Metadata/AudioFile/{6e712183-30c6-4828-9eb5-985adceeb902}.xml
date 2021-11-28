@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{6e712183-30c6-4828-9eb5-985adceeb902}">
+		<property name="assetPath">
+			<value>WIW-v0_B.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>96.000020833333338</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{25f8830c-e79d-453d-85c0-91bf9c990df2}</destination>
+		</relationship>
+	</object>
+</objects>
