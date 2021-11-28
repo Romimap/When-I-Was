@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1867745818184730045}
   - component: {fileID: 1867745818184730042}
   - component: {fileID: 1867745818184730043}
-  m_Layer: 0
+  - component: {fileID: 1455230451891197749}
+  m_Layer: 9
   m_Name: chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
+  collectedSound: {fileID: 1455230451891197749}
 --- !u!61 &1867745818184730043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +146,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
+--- !u!114 &1455230451891197749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867745818184730040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/get_collectible
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0

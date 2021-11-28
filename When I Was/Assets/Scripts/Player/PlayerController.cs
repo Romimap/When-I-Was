@@ -45,12 +45,8 @@ public class PlayerController : MonoBehaviour
     public bool usedDoubleJump = false;
     bool usedWallJump = false;
 
-    float traveledDistance = 0;
-    public float PlayStepSoundEvery = 8;
-    Vector3 previousPos;
-    public AudioSource stepSound;
-    public AudioSource jumpSound;
-    public AudioSource swapSound;
+    public FMODUnity.StudioEventEmitter jumpSound;
+    public FMODUnity.StudioEventEmitter swapSound;
 
     float airInputOffsetTimer = 0;
 
@@ -86,9 +82,6 @@ public class PlayerController : MonoBehaviour
         //initializeGO();
 
         StartCoroutine("RenderBlendCoroutine");
-
-        previousPos = transform.position;
-
     }
 
     void Update() {
@@ -120,13 +113,6 @@ public class PlayerController : MonoBehaviour
         }
 
         if (OnGround) {
-
-            traveledDistance += (transform.position - previousPos).magnitude;
-            if (traveledDistance > PlayStepSoundEvery) {
-                traveledDistance -= PlayStepSoundEvery;
-                stepSound.Play();
-                previousPos = transform.position;
-            }
 
             if (jump)
             {
