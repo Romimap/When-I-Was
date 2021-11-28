@@ -858,7 +858,7 @@ namespace FMODUnity
             // If the path contains the Unity project path remove it and return the result
             if (fullPath.Contains(fullProjectPath))
             {
-                fullPath = fullPath.Replace(fullProjectPath, "");
+                return fullPath.Replace(fullProjectPath, "");
             }
             // If not, attempt to find a relative path on the same drive
             else if (Path.GetPathRoot(fullPath) == Path.GetPathRoot(fullProjectPath))
@@ -898,10 +898,11 @@ namespace FMODUnity
                     result = "../" + result;
                 }
 
-                fullPath = result;
-            }
+                return result;
 
-            return fullPath.Replace(Path.DirectorySeparatorChar, '/');
+            }
+            // Otherwise return the full path
+            return fullPath;
         }
     }
 }
