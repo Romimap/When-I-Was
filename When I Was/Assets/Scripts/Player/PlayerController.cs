@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Serialization;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private SpriteRenderer _sr;
     public Vector2 _momentum;
+    public float speedMaxY = -40.0f;
     private Vector2 _targetMomentum;
     private float _height;
     private float _heightOffset;
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     protected int persistentLayer = 10;
     protected int playerPastLayer = 12;
     protected int playerPresentLayer = 13;
-
+    
     protected int currentWorldLayer;
 
     protected ContactFilter2D contactFilterPast;
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public Material SceneRenderMaterial;
     private Rigidbody2D Grabbed = null;
     private Vector3 grabbedOffset;
-
+    
     public int level = 0;
     public int Level { get { return level; } set { level = value; } }
     
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     private bool leftWallJumpCommand = false;
     private bool rightWallJumpCommand = false;
 
+    public bool controlleDisable = false;
     private enum State {
         Past, Present
     };
@@ -104,7 +107,6 @@ public class PlayerController : MonoBehaviour
             jump = false;
             Grabbed.velocity = (transform.position + grabbedOffset - Grabbed.transform.position) * 10;
         }
-
         
 
         RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, new Vector2(1, 0),
@@ -292,6 +294,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate () {
         //Movement
         _momentum = _rb.velocity;
+        if (_momentum.y < speedMaxY) _momentum.y = speedMaxY;
 
         if (airAccelerationInterpolation) {
             _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
