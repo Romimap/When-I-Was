@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
             gravityInterpolation = true;
             usedWallJump = false;
 
-            if (level >= 1 && !usedDoubleJump) doubleJump = Input.GetKeyDown(KeyCode.Space);
 
             if ((Mathf.Abs(_momentum.x) < Mathf.Abs(_targetMomentum.x) || _momentum.x * x < 0) && airInputOffsetTimer < 0) {
                 airAccelerationInterpolation = true;
@@ -148,8 +147,7 @@ public class PlayerController : MonoBehaviour
 
             airInputOffsetTimer -= Time.deltaTime;
 
-
-            if (jump && !usedDoubleJump) {
+            if (jump && level >= 1 && !usedDoubleJump) {
                 jumpCommand = true;
                 usedDoubleJump = true;
             }
