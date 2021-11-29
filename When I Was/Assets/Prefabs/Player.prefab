@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3178495369252443776}
   - component: {fileID: 6951271401750019746}
   - component: {fileID: 1152505867042253884}
+  - component: {fileID: 2931927897523421581}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -53,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _momentum: {x: 0, y: 0}
-  speedMaxY: -300
+  speedMaxY: -40
   groundLevel: {fileID: 9009244055067664058}
   coyoteTime: 0.2
   airCoyoteTime: 0.1
@@ -225,6 +226,21 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &2931927897523421581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009244054921502042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9087de2b055c14694b7ad34dee5265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &9009244055067664058
 GameObject:
   m_ObjectHideFlags: 0

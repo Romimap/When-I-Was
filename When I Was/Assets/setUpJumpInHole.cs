@@ -8,6 +8,7 @@ public class setUpJumpInHole : MonoBehaviour
     public Camera _camera;
     public float followSpeedCamera = 5.0f;
     private bool triggered = false;
+    public GameObject credits;
     private void Start()
     {
         
@@ -20,10 +21,13 @@ public class setUpJumpInHole : MonoBehaviour
     }
 
     private void OnTriggerEnter2D (Collider2D collision) {
-        if (collision.tag.Equals("Player"))
-        {
+        if (collision.gameObject.CompareTag("Player"))
+        {   
+            Debug.Log("TRIGGERRRREDD");
             collision.GetComponent<PlayerController>().controlleDisable = true;
             triggered = true;
+            credits.SetActive(true);
+
         }
     }
     

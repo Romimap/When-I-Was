@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private bool OnGround
     {
-        get { return _momentum.y <= 0 && _lastOnGroundAt > Time.time - coyoteTime; }
+        get { return _momentum.y <= 0 && _lastOnGroundAt >= Time.time - coyoteTime; }
     }
 
     void Start()
@@ -93,6 +93,8 @@ public class PlayerController : MonoBehaviour
         currentWorldLayer = presentLayer;
 
         //initializeGO();
+
+        FMODUnity.RuntimeManager.GetBus("bus:/").setVolume(GameData.MASTERVOLUME);
 
         StartCoroutine("RenderBlendCoroutine");
     }
