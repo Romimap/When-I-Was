@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lever : Activatable {
     public Activatable link;
     private bool _canBeActivated = false;
-
+    
     void Start() {
         Deactivate();
     }
@@ -25,6 +25,9 @@ public class Lever : Activatable {
     private void OnTriggerEnter2D (Collider2D c) {
         print(c.name + " enter");
         if (c.tag.Equals("Player")) {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            ShowHelp script = player.GetComponent<ShowHelp>();
+            script.StartBlinking(script.sprites[1], true);
             _canBeActivated = true;
         }
     }
@@ -32,6 +35,8 @@ public class Lever : Activatable {
     private void OnTriggerExit2D (Collider2D c) {
         print(c.name + " exit");
         if (c.tag.Equals("Player")) {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<ShowHelp>().StopBlinking( );
             _canBeActivated = false;
         }
     }
