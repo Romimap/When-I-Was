@@ -9,11 +9,19 @@ public class PowerUp : MonoBehaviour  {
     private bool upgraded = false;
     [TextArea]
     public string powerUpText;
+    private FMODUnity.StudioEventEmitter clipclap;
+
+    public void Start () {
+        clipclap = gameObject.AddComponent<FMODUnity.StudioEventEmitter>();
+        clipclap.Event = "event:/computer_glitch";
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player"))
         {
             PopupSystem pop = GameObject.FindGameObjectWithTag("Popup").GetComponent<PopupSystem>();
             pop.popUp(powerUpText);
+            clipclap.Play();
 
             if (doUpgrade && !upgraded){
                 other.GetComponent<PlayerController>().powerUp();
@@ -26,6 +34,8 @@ public class PowerUp : MonoBehaviour  {
         if (other.CompareTag("Player")) {
             PopupSystem pop = GameObject.FindGameObjectWithTag("Popup").GetComponent<PopupSystem>();
             pop.close();
+            clipclap.Stop();
+
         }
     }
 }

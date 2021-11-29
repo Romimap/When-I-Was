@@ -90,8 +90,11 @@
 	<object class="MixerBusPanner" id="{82ea1264-969d-44c2-8c22-00c4c7e78611}" />
 	<object class="SingleSound" id="{6795b967-8150-421c-b610-df1acd2ee602}">
 		<property name="length">
-			<value>1.9793541666666667</value>
+			<value>1.625</value>
 		</property>
+		<relationship name="fadeOutCurve">
+			<destination>{449d4e7f-f9fb-4394-993e-752f09cda401}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{80af922a-6dd1-4341-8467-21f1fe4987aa}</destination>
 		</relationship>
@@ -120,6 +123,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{541f04fb-0319-4226-bf7a-4ddeb2b18d49}" />
 	<object class="MixerBusFader" id="{ad446bdd-ee27-49cf-89e3-eca0a45840f7}" />
+	<object class="FadeCurve" id="{449d4e7f-f9fb-4394-993e-752f09cda401}">
+		<relationship name="startPoint">
+			<destination>{a8c1f45b-2ecd-4744-b604-76c00d4cb762}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{02ad8d3a-9340-4b1e-bf27-37cc4ed6cff9}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{86ee25dc-9f25-47f3-a1cd-615a514d5242}">
 		<relationship name="effects">
 			<destination>{761f85fc-dcaf-4c95-861f-cfd232d6e045}</destination>
@@ -127,5 +138,24 @@
 	</object>
 	<object class="MixerBusPanner" id="{f0db2f2b-f1b2-4857-b9dd-632b38fc1d8d}" />
 	<object class="MixerBusFader" id="{705b3f89-df03-41ab-a061-aec38a45e04d}" />
+	<object class="AutomationPoint" id="{a8c1f45b-2ecd-4744-b604-76c00d4cb762}">
+		<property name="position">
+			<value>1.59375</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+		<property name="curveShape">
+			<value>0.25471893</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{02ad8d3a-9340-4b1e-bf27-37cc4ed6cff9}">
+		<property name="position">
+			<value>1.625</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{761f85fc-dcaf-4c95-861f-cfd232d6e045}" />
 </objects>

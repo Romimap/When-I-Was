@@ -42,13 +42,13 @@
 			<value>-28.5</value>
 		</property>
 		<property name="ratio">
-			<value>1.44999993</value>
+			<value>1.29999995</value>
 		</property>
 		<property name="attackTime">
 			<value>6</value>
 		</property>
 		<property name="releaseTime">
-			<value>86</value>
+			<value>64</value>
 		</property>
 		<relationship name="sidechains">
 			<destination>{d00d9186-68b9-406d-8db1-20020304495a}</destination>

@@ -6,7 +6,9 @@ public class Checkpoint : MonoBehaviour
 {
     public GameObject newSpawn;
     public bool activate = false; 
-    public Animator animator; 
+    public Animator animator;
+
+    public FMODUnity.StudioEventEmitter checkpoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +32,8 @@ public class Checkpoint : MonoBehaviour
     {
         // collision.gameObject.GetComponent<Checkpoint>().activate = false;
         
-        if (collision.CompareTag("Player"))
-        {
+        if (collision.CompareTag("Player")) {
+            if (!activate) checkpoint.Play();
             activate = true;
             PlayerController playerController =(PlayerController) collision.GetComponent("PlayerController");
             playerController.spawnPoint = newSpawn;
