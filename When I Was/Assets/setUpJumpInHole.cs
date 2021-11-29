@@ -24,7 +24,7 @@ public class setUpJumpInHole : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {   
             Debug.Log("TRIGGERRRREDD");
-            // collision.GetComponent<PlayerController>().
+            collision.GetComponent<PlayerController>().controlleDisable = true;
             triggered = true;
             credits.SetActive(true);
 
