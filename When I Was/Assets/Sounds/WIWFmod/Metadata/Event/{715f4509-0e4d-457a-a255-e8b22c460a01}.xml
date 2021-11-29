@@ -5,7 +5,7 @@
 			<value>pressure_plate</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{0595ec86-487b-402d-9f11-c5100ddb5316}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{4798795b-9a7d-4da0-9c16-161aaef5d172}">
 		<relationship name="effects">
 			<destination>{d8c97abd-6957-4a03-b71c-8ad1ae5ed09d}</destination>
+			<destination>{4053d409-b790-4061-9fbb-04dd284a1713}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{298fbb0e-3ba3-410a-baaf-11531e8970cc}" />
@@ -127,5 +128,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{d3f1c617-edcb-40fd-a4db-b46f6e1477e7}" />
 	<object class="MixerBusFader" id="{d8c97abd-6957-4a03-b71c-8ad1ae5ed09d}" />
+	<object class="SpatialiserEffect" id="{4053d409-b790-4061-9fbb-04dd284a1713}">
+		<property name="maximumDistance">
+			<value>200</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{c1a364a9-8756-4338-9977-76ec527f72e4}" />
 </objects>

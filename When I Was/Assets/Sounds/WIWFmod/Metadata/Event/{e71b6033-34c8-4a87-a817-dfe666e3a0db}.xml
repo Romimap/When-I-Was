@@ -5,7 +5,7 @@
 			<value>computer_glitch</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{0595ec86-487b-402d-9f11-c5100ddb5316}</destination>
@@ -127,6 +127,7 @@
 	<object class="MixerBusEffectChain" id="{e1984339-56db-4345-93d6-0f2b605e0096}">
 		<relationship name="effects">
 			<destination>{e5486945-7c75-4974-bd27-232c83fd3eab}</destination>
+			<destination>{400945e4-c3f9-43ed-99a8-6f2e5beda57b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{162e5d01-5695-42e5-9494-397767f937d0}" />
@@ -176,5 +177,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{a1fed709-625f-4fd7-ac69-72a7687d44f2}" />
 	<object class="MixerBusFader" id="{e5486945-7c75-4974-bd27-232c83fd3eab}" />
+	<object class="SpatialiserEffect" id="{400945e4-c3f9-43ed-99a8-6f2e5beda57b}">
+		<property name="maximumDistance">
+			<value>200</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{db835b7d-d62c-45ce-9419-56052294552f}" />
 </objects>

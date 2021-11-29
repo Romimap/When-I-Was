@@ -5,7 +5,7 @@
 			<value>lever_activate</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{0595ec86-487b-402d-9f11-c5100ddb5316}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{d088c3bb-ed80-4e00-b98e-125d2bb4790f}">
 		<relationship name="effects">
 			<destination>{c0175bc5-faff-4f45-b90a-b5de35172225}</destination>
+			<destination>{66000b44-ac63-4265-9eff-e34986652e06}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c68cb51a-7470-49dc-9ec9-bb5c239598c7}" />
@@ -127,5 +128,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{582cdd26-5588-465d-9097-e2aecd5539b8}" />
 	<object class="MixerBusFader" id="{c0175bc5-faff-4f45-b90a-b5de35172225}" />
+	<object class="SpatialiserEffect" id="{66000b44-ac63-4265-9eff-e34986652e06}">
+		<property name="maximumDistance">
+			<value>200</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{c17fd6f9-a9c6-42c2-b886-140f2924ed3d}" />
 </objects>
