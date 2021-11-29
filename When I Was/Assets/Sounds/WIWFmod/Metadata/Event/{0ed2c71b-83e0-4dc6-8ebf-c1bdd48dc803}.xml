@@ -5,7 +5,7 @@
 			<value>door_close</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{0595ec86-487b-402d-9f11-c5100ddb5316}</destination>
@@ -119,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{e140e295-1c40-41d1-8667-0999cf3f024d}">
 		<relationship name="effects">
 			<destination>{b4b95b68-efbe-4b1d-847e-fda4cce07237}</destination>
+			<destination>{2b0209c3-7b36-450f-93c1-71043021314f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b6c2e846-d8ca-4e70-a2f7-da80c8809fbf}" />
@@ -138,6 +139,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{7da1e1c6-3a34-49e0-b347-e74a8197dff5}" />
 	<object class="MixerBusFader" id="{b4b95b68-efbe-4b1d-847e-fda4cce07237}" />
+	<object class="SpatialiserEffect" id="{2b0209c3-7b36-450f-93c1-71043021314f}">
+		<property name="maximumDistance">
+			<value>200</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{2b1fff84-54f3-42f0-9085-f6cec56bee5b}">
 		<property name="position">
 			<value>1.59375</value>
