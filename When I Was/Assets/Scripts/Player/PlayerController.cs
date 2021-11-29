@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     public FMODUnity.StudioEventEmitter jumpSound;
     public FMODUnity.StudioEventEmitter swapSound;
+    public FMODUnity.StudioEventEmitter dieSound;
+    public FMODUnity.StudioEventEmitter music;
 
     float airInputOffsetTimer = 0;
 
@@ -144,9 +146,8 @@ public class PlayerController : MonoBehaviour
             airInputOffsetTimer -= Time.deltaTime;
 
 
-            if (doubleJump && !jumpCommand) {
+            if (jump && !usedDoubleJump) {
                 jumpCommand = true;
-                doubleJump = false;
                 usedDoubleJump = true;
             }
             if (hit2DWallRight.collider != null && !usedWallJump && level >= 2 && jump && !leftWallJumpCommand) {
@@ -241,7 +242,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl)) {
             Vector2 direction = new Vector2(1, 0);
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, 15, (int)Mathf.Pow(2, currentWorldLayer));
-            if (hit2D.collider != null) {
+            if (hit2D.collider != null && hit2D.collider.tag.Equals("Box")) {
                 Rigidbody2D hit = hit2D.collider.gameObject.GetComponent<Rigidbody2D>();
                 Grabbed = hit;
                 if (Grabbed != null) {
@@ -250,7 +251,7 @@ public class PlayerController : MonoBehaviour
             } else {
                 direction = -direction;
                 hit2D = Physics2D.Raycast(transform.position, direction, 15, (int)Mathf.Pow(2, currentWorldLayer));
-                if (hit2D.collider != null) {
+                if (hit2D.collider != null && hit2D.collider.tag.Equals("Box")) {
                     Rigidbody2D hit = hit2D.collider.gameObject.GetComponent<Rigidbody2D>();
                     Grabbed = hit;
                     if (Grabbed != null) {
@@ -281,6 +282,7 @@ public class PlayerController : MonoBehaviour
 
             SceneRenderMaterial.SetFloat("_Blend", timer);
             SceneRenderMaterial.SetFloat("_Noise", noiseTimer);
+            music.SetParameter("Switching", timer * 10);
 
 
             yield return new WaitForEndOfFrame();
@@ -391,11 +393,10 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(killPlayer());
     }
     
-    private IEnumerator killPlayer()
-    {
+    private IEnumerator killPlayer() {
+        dieSound.Play();
         yield return new WaitForSeconds(0.3f);
-       Death();
-        
+        Death();
     }
     
     protected void Death()
