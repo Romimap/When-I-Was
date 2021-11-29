@@ -21,12 +21,9 @@ public class setUpJumpInHole : MonoBehaviour
 
     private void OnTriggerEnter2D (Collider2D collision) {
         if (collision.tag.Equals("Player"))
-        {   
-            
-            // collision.GetComponent<PlayerController>().
+        {
+            collision.GetComponent<PlayerController>().controlleDisable = true;
             triggered = true;
-
-
         }
     }
     

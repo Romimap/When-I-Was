@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/jump
   guid: e94c98f67aed764da285603b9ac6cda2
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   Path: event:/checkpoint
   guid: c66eb8896f55b1438521c5d1bf03dc67
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Sounds/WIWFmod/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637738024599400434
+  lastModified: 637738009930000000
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -117,7 +117,7 @@ MonoBehaviour:
   Path: event:/get_collectible
   guid: 67728835cf7d4248b05499e83c583c88
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   Path: event:/laser_shoot
   guid: ce6d66e77d42b543a34ea775a0ee51d3
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
   Path: event:/lever_activate
   guid: 5cd36a8db3196f4ab31967816c9ff2da
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -189,6 +189,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 200
   Length: 421
+--- !u!114 &-3263440962342187482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sounds/WIWFmod/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637738009930000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -7508396246114282038}
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   EditorEvents:
   - {fileID: 3137591397869791748}
   - {fileID: 2791251959210174279}
@@ -222,10 +240,10 @@ MonoBehaviour:
   - {fileID: -5257371949083624578}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   StringsBanks:
   - {fileID: -7508396246114282038}
-  stringsBankWriteTime: 637738024599400434
+  stringsBankWriteTime: 637738009930000000
   cacheVersion: 3
 --- !u!114 &147273683235827794
 MonoBehaviour:
@@ -242,12 +260,12 @@ MonoBehaviour:
   Path: event:/Music
   guid: ece7698a38753048bed64c749d4a2aea
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 4737513041401581031}
+  - {fileID: 793612118393512975}
   MinDistance: 0
   MaxDistance: 0
   Length: 96000
@@ -266,7 +284,7 @@ MonoBehaviour:
   Path: event:/door_open
   guid: 4df8a4de9bed0b4faa46e1b61623f4ad
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -274,6 +292,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 200
   Length: 1625
+--- !u!114 &793612118393512975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Switching
+  m_EditorClassIdentifier: 
+  Name: Switching
+  Min: 0
+  Max: 10
+  Default: 0
+  Exists: 1
 --- !u!114 &1261188832015829089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +324,7 @@ MonoBehaviour:
   Path: event:/elevator
   guid: e7faeb79db73f7499eb7e2001054dc36
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -314,7 +349,7 @@ MonoBehaviour:
   lastModified: 637738024599760507
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &2791251959210174279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +365,7 @@ MonoBehaviour:
   Path: event:/door_close
   guid: 1bc7d20ee083c64d8ebfc1bdd48dc803
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -353,7 +388,7 @@ MonoBehaviour:
   Path: event:/pressure_plate
   guid: 09455f714d0e7a45a255e8b22c460a01
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -376,7 +411,7 @@ MonoBehaviour:
   Path: event:/box_scrape
   guid: 38a2b6728b3d7e4abf2efcfc67432477
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -400,7 +435,7 @@ MonoBehaviour:
   Min: 0
   Max: 10
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &7813638812090388870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +468,7 @@ MonoBehaviour:
   Path: event:/AMB_ROOMTONE
   guid: cca9c4af2821c3468a590522552cd88e
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -490,7 +525,7 @@ MonoBehaviour:
   Path: event:/character_died
   guid: 4a9988e161053b48a67fe1716496fbaa
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -513,7 +548,7 @@ MonoBehaviour:
   Path: event:/time_switch
   guid: a425a385a2d40c4eb26a47e2f4423c7e
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -536,7 +571,7 @@ MonoBehaviour:
   Path: event:/computer_glitch
   guid: 33601be7c834874aa817dfe666e3a0db
   Banks:
-  - {fileID: 2472387464777668825}
+  - {fileID: -3263440962342187482}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

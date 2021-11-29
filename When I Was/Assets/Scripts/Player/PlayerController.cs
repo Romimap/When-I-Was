@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+        if (controlleDisable) return;
 
         //Inputs
         float x = Input.GetAxis("Horizontal");
@@ -292,22 +293,29 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate () {
-        //Movement
         _momentum = _rb.velocity;
         if (_momentum.y < speedMaxY) _momentum.y = speedMaxY;
 
-        if (airAccelerationInterpolation) {
-            _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
-        }
-        if (accelerationInterpolation) {
-            _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
-        }
         if (gravityInterpolation) {
             if (useLowGravity) {
                 _momentum.y -= gravity * Time.fixedDeltaTime * 0.5f;
             } else {
                 _momentum.y -= gravity * Time.fixedDeltaTime;
             }
+        }
+
+        if (controlleDisable) {
+            _momentum.x = _momentum.x * (1 - airAcceleration * 0.3f);
+            _rb.velocity = _momentum;
+            return;
+        }
+        //Movement
+
+        if (airAccelerationInterpolation) {
+            _momentum.x = _targetMomentum.x * airAcceleration + _momentum.x * (1 - airAcceleration);
+        }
+        if (accelerationInterpolation) {
+            _momentum.x = _targetMomentum.x * acceleration + _momentum.x * (1 - acceleration);
         }
         if (jumpCommand && !leftWallJumpCommand && !rightWallJumpCommand) {
             _momentum.y = jumpForce;
